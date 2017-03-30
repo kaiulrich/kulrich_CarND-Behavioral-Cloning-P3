@@ -1,0 +1,11 @@
+data
+.ipynb_checkpoints
+*.h5
+models
+*.swp
+*.p
+checkpoint
+lenet.*
+data.*
+linux_sim
+linux-sim.*
