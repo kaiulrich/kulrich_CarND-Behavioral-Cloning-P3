@@ -9,3 +9,5 @@ lenet.*
 data.*
 linux_sim
 linux-sim.*
+simulator-linux
+simulator-linux.*
