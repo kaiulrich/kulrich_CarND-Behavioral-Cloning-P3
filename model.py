@@ -52,7 +52,7 @@ gen_val = generator(data_val)
 
 log_dir = './logs'
 nb_epoch = 20
-nb_samples_per_epoch = 2000
+nb_samples_per_epoch = 8000
 nb_val_samples = len(data_val)
 learning_rate = 1e-4
 min_delta=0.00001
