@@ -56,7 +56,7 @@ gen_val = generator(data_val)
 log_dir = './logs'
 model_dir = './models'
 date_string = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')[:-3]
-nb_epoch = 7
+nb_epoch = 20
 nb_samples_per_epoch = 8000
 nb_val_samples = len(data_val)
 learning_rate = 1e-4
@@ -78,9 +78,9 @@ history_object = model.fit_generator(gen_train,
                     validation_steps=nb_val_samples, 
                     epochs=nb_epoch,
                     callbacks=[
-				   keras.callbacks.ModelCheckpoint(model_dir + '/model.' + date_string + '.{epoch:02d}-{val_loss:.3f}.h5', monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1),
+				   keras.callbacks.ModelCheckpoint(model_dir + '/model.' + date_string + '.{epoch:02d}-{val_loss:.4f}.h5', monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1),
                        keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=min_delta, patience=1, verbose=0, mode='auto'),
-                       keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=True)
+                       keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=False)
                     ])
 
 
