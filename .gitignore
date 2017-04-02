@@ -11,3 +11,7 @@ linux_sim
 linux-sim.*
 simulator-linux
 simulator-linux.*
+__pycache*
+logs
+own_data
+
