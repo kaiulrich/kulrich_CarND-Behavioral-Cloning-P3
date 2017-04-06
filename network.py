@@ -8,14 +8,14 @@ from keras.callbacks import Callback
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 
+from utils import *
+
 def nvidia_model(summary=False):
     
     model = Sequential()
-    # Crop the sky and bottom pixels, normalise and reduce dimensionality
     model.add(Cropping2D(((80,25),(1,1)), input_shape=[160, 320, 3], name="Crop2D"))
     model.add(BatchNormalization(axis=1, name="Normalise"))
-    model.add(AveragePooling2D(pool_size=(1,4), name="Resize", trainable=False))
-
+   
     # Successively learn through multiple convolutions, relu activations and pooling layers,
     model.add(Convolution2D(24, (3, 3), strides=(2,2), name="Conv1", activation="relu"))
     model.add(MaxPooling2D(name="MaxPool1"))
@@ -25,7 +25,6 @@ def nvidia_model(summary=False):
     model.add(MaxPooling2D(name="MaxPool3"))
     model.add(Dropout(0.2, name="Dropout1"))
 
-    # Learn the steering angles through 3 fully connected layers
     model.add(Flatten(name="Flatten"))
     model.add(Dense(100, activation="relu", name="FC2"))
     model.add(Dropout(0.5, name="Dropout2"))

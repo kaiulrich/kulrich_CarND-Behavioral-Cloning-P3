@@ -15,4 +15,5 @@ __pycache*
 logs
 own_data
 models
-
+logs*
+*data*
