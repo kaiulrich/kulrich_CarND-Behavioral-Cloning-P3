@@ -83,6 +83,3 @@ history_object = model.fit_generator(gen_train,
                        keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=False)
                     ])
 
-
-model.save("model.h5")
-print("\nSaved model")
