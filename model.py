@@ -29,10 +29,10 @@ from network import *
 from generator import *
 
 ######################################################################################################################
+# Parameter to tune the Training 
 
 EPOCHS = 20
 SAMPLE_PER_EPOCHS = 20000
-
 
 DATA_DIR = 'data'
 LOG_DIR = './logs'
@@ -56,9 +56,6 @@ model = nvidia_model(False)
 
 print("\nPrepare Training")
 
-adam = Adam(lr=LEARNING_RATE, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
-model.compile(optimizer=adam, loss='mse')
-
 gen_train = generator(data_train, augment=True)  
 gen_val = generator(data_val)
 
@@ -71,6 +68,9 @@ if os.path.exists(log_dir):
 if not os.path.exists(model_dir):
 	print('\nCreate model_dir')
 	os.mkdir(model_dir) 
+
+adam = Adam(lr=LEARNING_RATE, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+model.compile(optimizer=adam, loss='mse')
 
 print("\nTrain network ...")
 

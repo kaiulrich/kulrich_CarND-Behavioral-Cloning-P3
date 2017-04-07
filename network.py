@@ -11,6 +11,8 @@ from keras.regularizers import l2
 from utils import *
 
 def nvidia_model(summary=False):
+
+    print("Setup keras model.\n")
     
     model = Sequential()
     model.add(Cropping2D(((80,25),(1,1)), input_shape=[160, 320, 3], name="Crop2D"))
@@ -32,7 +34,6 @@ def nvidia_model(summary=False):
     model.add(Dense(10, activation="relu", name="FC4"))
 
     model.add(Dense(1, name="Steering", activation='linear'))
-
 
     if summary:
         model.summary()
