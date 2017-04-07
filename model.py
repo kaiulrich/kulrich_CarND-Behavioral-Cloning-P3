@@ -28,12 +28,23 @@ from utils import *
 from network import *
 from generator import *
 
+######################################################################################################################
+
+EPOCHS = 20
+SAMPLE_PER_EPOCHS = 20000
 
 
-data_dir = 'data'
+DATA_DIR = 'data'
+LOG_DIR = './logs'
+MODEL_DIR = './models'
+
+LEARNING_RATE = 1e-4
+MIN_DELTA=0.0001
+
+######################################################################################################################
 
 print("Load Data...")
-data = loadData(data_dir)
+data = loadData(DATA_DIR)
 print("Data loaded.")
 
 print("\nSplit data")
@@ -44,23 +55,14 @@ print("Number of n_val labels =", len(data_val))
 model = nvidia_model(False)
 
 print("\nPrepare Training")
-import shutil
 
-
-adam = Adam(lr=1e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+adam = Adam(lr=LEARNING_RATE, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(optimizer=adam, loss='mse')
 
 gen_train = generator(data_train, augment=True)  
 gen_val = generator(data_val)
 
-log_dir = './logs'
-model_dir = './models'
-date_string = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')[:-3]
-nb_epoch = 20
-nb_samples_per_epoch = 20000
-nb_val_samples = len(data_val)
-learning_rate = 1e-4
-min_delta=0.0001
+VALIDATION_SAMPLES = len(data_val)
 
 if os.path.exists(log_dir):
 	print('\nRemove logs')
@@ -70,16 +72,17 @@ if not os.path.exists(model_dir):
 	print('\nCreate model_dir')
 	os.mkdir(model_dir) 
 
-print("\nTrain Data")
+print("\nTrain network ...")
 
+date_string = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S_%f')[:-3]
 history_object = model.fit_generator(gen_train,
-                    steps_per_epoch=nb_samples_per_epoch,
+                    steps_per_epoch=SAMPLE_PER_EPOCHS,
                     validation_data=gen_val,
-                    validation_steps=nb_val_samples, 
-                    epochs=nb_epoch,
+                    validation_steps=VALIDATION_SAMPLES, 
+                    epochs=EPOCHS,
                     callbacks=[
-				   keras.callbacks.ModelCheckpoint(model_dir + '/model.' + date_string + '.{epoch:02d}-{val_loss:.4f}.h5', monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1),
-                       keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=min_delta, patience=1, verbose=0, mode='auto'),
-                       keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=0, write_graph=True, write_images=False)
+				   keras.callbacks.ModelCheckpoint(MODEL_DIR  + '/model.' + date_string + '.{epoch:02d}-{val_loss:.4f}.h5', monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1),
+                       keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=MIN_DELTA, patience=1, verbose=0, mode='auto'),
+                       keras.callbacks.TensorBoard(log_dir=LOG_DIR, histogram_freq=0, write_graph=True, write_images=False)
                     ])
-
+print("\n... Training finished")

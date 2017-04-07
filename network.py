@@ -16,7 +16,6 @@ def nvidia_model(summary=False):
     model.add(Cropping2D(((80,25),(1,1)), input_shape=[160, 320, 3], name="Crop2D"))
     model.add(BatchNormalization(axis=1, name="Normalise"))
    
-    # Successively learn through multiple convolutions, relu activations and pooling layers,
     model.add(Convolution2D(24, (3, 3), strides=(2,2), name="Conv1", activation="relu"))
     model.add(MaxPooling2D(name="MaxPool1"))
     model.add(Convolution2D(48, (3, 3), strides=(1,1), name="Conv2", activation="relu"))
@@ -32,7 +31,6 @@ def nvidia_model(summary=False):
     model.add(Dropout(0.2, name="Dropout3"))
     model.add(Dense(10, activation="relu", name="FC4"))
 
-    # Final Output  of steering angles
     model.add(Dense(1, name="Steering", activation='linear'))
 
 

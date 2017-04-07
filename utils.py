@@ -2,18 +2,20 @@ import pandas as pd
 import numpy as np
 import cv2
 
-def loadData(data_dir):
+## load all data from driving_log.csv
+def loadData(data_dir="./data"):
 	columns = ['center', 'left', 'right', 'steering_angle', 'throttle', 'brake', 'speed']
 	print("Dataset Columns:", columns)
 	data = pd.read_csv(data_dir + '/driving_log.csv', header=None, names=columns)
 	return data
 
+## flip images randomly
 def random_flip(img,steering_angle,prob=0.5):
     if (np.random.random() < prob):
         img,steering_angle= cv2.flip(img,1),-steering_angle
     return img,steering_angle
 
-""" adjust the brightness using a random factor for all pixels"""
+##  adjust the brightness using a random factor for all pixels
 def random_brightness(img, median = 0.8, dev = 0.4, prob=0.5):
     if (np.random.random() < prob):
         hsv = cv2.cvtColor(img,cv2.COLOR_RGB2HSV)
@@ -25,7 +27,7 @@ def random_brightness(img, median = 0.8, dev = 0.4, prob=0.5):
         img = cv2.cvtColor(hsv,cv2.COLOR_HSV2RGB)
     return img
 
-"""sheer the  horizon by a small fraction"""
+## sheer the  horizon by a small fraction
 def random_shear(img, steering_angle, shear_range=200, prob =0.5):
     if np.random.random() < prob:
         h, w, ch = img.shape
@@ -38,7 +40,7 @@ def random_shear(img, steering_angle, shear_range=200, prob =0.5):
         img = cv2.warpAffine(img, transform_matrix, (w, h), borderMode=1)
     return img, steering_angle
 
-"""cast a random shaped shadow and overlay over the original image"""
+## cast a random shaped shadow and overlay over the original image"""
 def random_shadow(img):
     shadow = img.copy()
     h,w,ch = shadow.shape
@@ -51,7 +53,7 @@ def random_shadow(img):
     img = cv2.addWeighted(shadow, alpha, img, 1-alpha,0,img)
     return img
 
-"""pipe all the augmentation transforms together"""
+## pipe all the augmentation transforms together
 def pipeline(img,steering_angle):
     img,steering_angle = random_flip(img,steering_angle)
     img = random_brightness(img)
