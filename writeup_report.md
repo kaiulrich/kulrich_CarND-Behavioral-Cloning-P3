@@ -122,7 +122,7 @@ To run the training on usal machines i desided to implement a validation and tra
 Also each image and corresponding steering angle has been flipped and added to the training set. This helps to balance data because original training data contains more turns to the left.
 
 | Original                     | Fliped                       |
-|------------------ ---------|---------------------------|
+|----------------------------|---------------------------|
 | ![alt text][pre_org]   | ![alt text][pre_fliped] |
 
 The Training data generator does some Image preprozessing too, like changing the brightness, image sharing or shadowing
