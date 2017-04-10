@@ -105,7 +105,7 @@ The model was tested by running it through the simulator and ensuring that the v
 
 For the loss function I used MSE and used the ADAM optimiser with a low initial learning rate (model.py line 72). The Adam optimizer as compared to SGD automatically adjusts the learning rate over epochs unlike SGD. Because of the random train and validation se it is possible to variate the Numbers of images by batch. 
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 I used the images preperated for this project. Thanx to my son ( who is a lot better driver than I am) we produced around 4000 aditional data rows. 
 
@@ -137,9 +137,9 @@ Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/imag
 
 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 I started with NVIDIA model with 5 convolution layers and 4 fully connected layers (see image below) I reduced the complexity because we dont have the same complexity.
 ![alt text][netw_nvida]
@@ -153,7 +153,7 @@ The final model architecture (see picture below) consisted of a convolution neur
 
 ![alt text][architecture]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving and added the tem to the prepared training data.
 Than put 20% of the data into a validation set. 
