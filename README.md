@@ -147,7 +147,7 @@ Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/imag
 
 #### 1. Solution Design Approach
 
-I started with NVIDIA model with 5 convolution layers and 4 fully connected layers (see image below) I reduced the complexity because we dont have the same complexity.
+I started with  [NVIDIA model ](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) with 5 convolution layers and 4 fully connected layers (see image below) I reduced the complexity because we dont have the same complexity.
 
 ![alt text][netw_nvida]
 
