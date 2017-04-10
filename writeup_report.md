@@ -147,7 +147,7 @@ I continued with 3 convolution layers and 3 fully connected layers and internal 
 
 At the end of the process, the vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (see picture below) consisted of a convolution neural network with the following layers and layer sizes. 
 
@@ -168,6 +168,7 @@ Example for a preprozessing pipline result
 
 The validation set helped determine if the model was over or under fitting data. The Keras EarlyStoppin Callback (max epoch 20) was used to stop the training when the validation los hit the bottom value and starts rising agin.
 The ideal number of epochs was 8 ore 9. 
+
 ![alt text][tensorboard]
 
 I was using an adam optimizer so that manually training the learning rate wasn't necessary.
@@ -179,7 +180,7 @@ After I fond my best model, I started to edit the speed parameter in the drive.p
 The modles 
 
 | Track 1                     | Track 2                       |
-|------------------ ---------|---------------------------|
+|---------------------------|---------------------------|
 [![E](https://img.youtube.com/vi/senH6s-iNyQ/0.jpg)](https://youtu.be/senH6s-iNyQ "Training Track - Track 1") | [![E](https://img.youtube.com/vi/x6gXYwm-jrE/0.jpg)](https://youtu.be/x6gXYwm-jrE "Training Track - Track 2")|
 
 
