@@ -1,4 +1,4 @@
-#**Behavioral Cloning** 
+# Behavioral Cloning
 
 
 [//]: # (Image References)
@@ -21,8 +21,8 @@
 
 [netw_nvida]: ./images/nvida_network.png "Nvida_network" 
 
-### I Projectstrucktur
------ 
+
+###  Projectstrucktur
 
 #### 1. My project includes the following files:
 
@@ -86,7 +86,7 @@ or running the tensor bord
 ```sh
  tensorboard --logdir=logs
 ```
-
+----- 
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
@@ -136,7 +136,7 @@ The Training data generator does some Image preprozessing too, like changing the
 Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/image/) provided the same work for the same preprozessings.
 
 
-
+----- 
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
@@ -175,16 +175,17 @@ I was using an adam optimizer so that manually training the learning rate wasn't
 
 After I fond my best model, I started to edit the speed parameter in the drive.py (line 48) and I figured out the the best result in the 2 Track is 13
 
-### 4. Result 
+----- 
+### Result 
 
-The modles 
+The result model starts a bit curvy on track one but gets smover after awile. It behaves even better on track 2. 
 
 | Track 1                     | Track 2                       |
 |---------------------------|---------------------------|
 [![E](https://img.youtube.com/vi/senH6s-iNyQ/0.jpg)](https://youtu.be/senH6s-iNyQ "Training Track - Track 1") | [![E](https://img.youtube.com/vi/x6gXYwm-jrE/0.jpg)](https://youtu.be/x6gXYwm-jrE "Training Track - Track 2")|
 
-
-### 5. Review
+----- 
+### Review
 
 The vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road. It would be interessting to train the other features 'throttle', 'brake', 'speed' as well.
 
