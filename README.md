@@ -189,6 +189,7 @@ The result model starts a bit curvy on track one but gets smover after awile. It
 | Track 1                     | Track 2                       |
 |---------------------------|---------------------------|
 [![E](https://img.youtube.com/vi/senH6s-iNyQ/0.jpg)](https://youtu.be/senH6s-iNyQ "Training Track - Track 1") | [![E](https://img.youtube.com/vi/x6gXYwm-jrE/0.jpg)](https://youtu.be/x6gXYwm-jrE "Training Track - Track 2")|
+[![E](https://img.youtube.com/vi/is5pJRrdx3I/0.jpg)](https://youtu.be/is5pJRrdx3I "Training Track - Track 1") | [![E](https://img.youtube.com/vi/lTjZI8QX3mw/0.jpg)](https://youtu.be/lTjZI8QX3mw "Training Track - Track 2")|
 
 ----- 
 ### Review
