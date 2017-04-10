@@ -163,7 +163,7 @@ I used 20000 randomly taken flipped and preprozessed training data for training 
 Example for a preprozessing pipline result
 
 | Original                     | After pipline                       |
-|------------------ ---------|---------------------------|
+|----------------------------|---------------------------|
 | ![alt text][pre_org]   | ![alt text][pre_all_pipeline] |
 
 The validation set helped determine if the model was over or under fitting data. The Keras EarlyStoppin Callback (max epoch 20) was used to stop the training when the validation los hit the bottom value and starts rising agin.
@@ -190,4 +190,6 @@ The vehicle is able to drive autonomously around the track 1 and Track 2 without
 An improvment coul be to train the network with more balanced data like clearing up the data to loss the strong weight of small steering angles. 
 
 The good result from track 2 surised me, because I did not use any traing data form that track.
+
+karas provides a lot of tools worth to discover :-)
 
