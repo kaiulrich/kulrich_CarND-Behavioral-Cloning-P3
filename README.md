@@ -148,7 +148,9 @@ Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/imag
 #### 1. Solution Design Approach
 
 I started with NVIDIA model with 5 convolution layers and 4 fully connected layers (see image below) I reduced the complexity because we dont have the same complexity.
+
 ![alt text][netw_nvida]
+
 I continued with 3 convolution layers and 3 fully connected layers and internal Cropping2D (to cut the area of interesst) and a Normalisation layer. 
 
 At the end of the process, the vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road.
