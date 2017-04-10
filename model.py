@@ -52,6 +52,8 @@ data_train, data_val = train_test_split(data, test_size=0.2)
 print("Number of train images =", len(data_train))
 print("Number of n_val labels =", len(data_val))
 
+VALIDATION_SAMPLES = len(data_val)
+
 model = nvidia_model(False)
 
 print("\nPrepare Training")
@@ -59,7 +61,7 @@ print("\nPrepare Training")
 gen_train = generator(data_train, augment=True)  
 gen_val = generator(data_val)
 
-VALIDATION_SAMPLES = len(data_val)
+
 
 if os.path.exists(log_dir):
 	print('\nRemove logs')
