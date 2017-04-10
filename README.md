@@ -21,7 +21,11 @@
 
 [netw_nvida]: ./images/nvida_network.png "Nvida_network" 
 
-
+The goals / steps of this project are the following:
+Use the simulator to collect data of good driving behavior 
+Design, train and validate a model that predicts a steering angle from image data
+Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
+----
 ###  Projectstrucktur
 
 #### 1. My project includes the following files:
@@ -33,7 +37,7 @@
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * CarND-Behavioral-Cloning-P3.ipynb notebook to generate documentation images
-* writeup_report.md summarizing the results
+* RREADME.md summarizing the results
 
 #### 2. Run model on simulatror
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
