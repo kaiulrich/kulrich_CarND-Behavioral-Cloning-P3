@@ -41,7 +41,7 @@ The goals / steps of this project are the following:
 * CarND-Behavioral-Cloning-P3.ipynb notebook to generate documentation images
 * RREADME.md summarizing the results
 
-#### 2. Run model on simulatror
+#### 2. Run model on simulator
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 
 ```sh
@@ -102,14 +102,14 @@ The model is a variant of the NVIDIA model which is a normalisation layer follow
 
 #### 2. Attempts to reduce overfitting in the model
 
-The data are splited into a training and validation data set.
-The training and validation data are randomly selected from generators. and the model contains dropout layers in order to reduce overfitting. The first dropout layers is right after the three Convolution layers (network.py lines 27). The next dropout layers are after the first (network.py lines 31) and second (network.py lines 27) fully connected layers.
+The data are splited into a training data set and validation data set. The training and validation data are randomly selected from generators. 
+The model contains dropout layers in order to reduce overfitting. The first dropout layers is right after the three Convolution layers (network.py lines 27). The next dropout layers are after the first (network.py lines 31) and second (network.py lines 33) fully connected layer.
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track 1 and track 2.
 
 #### 3. Model parameter tuning
 
-For the loss function I used MSE and used the ADAM optimiser with a low initial learning rate (model.py line 72). The Adam optimizer as compared to SGD automatically adjusts the learning rate over epochs unlike SGD. Because of the random train and validation se it is possible to variate the Numbers of images by batch. 
+For the loss function I used MSE and an ADAM optimiser with a low initial learning rate (model.py line 72). The Adam optimizer, compared to SGD, automatically adjusts the learning rate over epochs unlike SGD. The train and validation generators are able to variate the numbers of random images by batch . 
 
 #### 4. Appropriate training data
 
@@ -117,9 +117,9 @@ I used the images preperated for this project. Thanx to my son ( who is a lot be
 
  ![alt text][histogram]
  
-The of the training data histogram shows, that there the most data are are from small steering angles. I decided not to clearing them up to have a real cloning of the behaviour.
+The the training data histogram shows, that the most of the data are are from small steering angles. I decided not to clearing them up to have a real cloning of the behaviour.
 
-To run the training on usal machines i desided to implement a validation and training data genererator on each data set. The training data generator selects randomly Images from center/left/right cameras. The main purpose of the images form left/right cameras is to learn model how to recover when the vehicle drives off the center the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted form the steering angle for right camera. 
+To run the training on usal machines i desided to implement a validation and training data genererator (generator.py and model.py line 61)  on each data set. The training data generator selects Images from center/left/right cameras randomly. The main purpose of the images form left/right cameras is to learn model how to recover when the vehicle drives off the center the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted form the steering angle for right camera. 
 
 | Camara left                    |      Camara center               |       Camara right                        | 
 |--------------------------------|------------------------------------|------------------------------------------|
@@ -163,8 +163,8 @@ The final model architecture (see picture below) consisted of a convolution neur
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving and added the tem to the prepared training data.
-Than put 20% of the data into a validation set. 
+To capture good driving behavior, we first recorded two laps on track one using center lane driving and added the data to the prepared training data.
+Than I splited 20% of the training data into a validation set. 
 
 I used 20000 randomly taken flipped and preprozessed training data for training the model. 
 
@@ -175,7 +175,7 @@ Example for a preprozessing pipline result
 | ![alt text][pre_org]   | ![alt text][pre_all_pipeline] |
 
 The validation set helped determine if the model was over or under fitting data. The Keras EarlyStoppin Callback (max epoch 20) was used to stop the training when the validation los hit the bottom value and starts rising agin.
-The ideal number of epochs was 8 ore 9. 
+Divering in the internal weigths of the network and the random training data the ideal number of epochs wasbetween  8 and 10. 
 
 ![alt text][tensorboard]
 
@@ -196,11 +196,11 @@ The result model starts a bit curvy on track one but gets smover after awile. It
 ----- 
 ### Review
 
-The vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road. It would be interessting to train the other features 'throttle', 'brake', 'speed' as well.
+The vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road. It would be interessting to train the other features 'brake' and 'speed' as well.
 
-An improvment coul be to train the network with more balanced data like clearing up the data to loss the strong weight of small steering angles. 
+An improvment could be to train the network with more balanced data like clearing up the data to loss the strong weight of small steering angles. 
 
-The good result from track 2 surised me, because I did not use any traing data form that track.
+The good result from track 2 surised me. I did not use any traing data form that track.
 
 karas provides a lot of tools worth to discover :-)
 
