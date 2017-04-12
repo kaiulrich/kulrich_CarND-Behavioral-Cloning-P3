@@ -1,4 +1,4 @@
-# Behavioral Cloning
+# Behavioural Cloning
 
 
 [//]: # (Image References)
@@ -17,13 +17,13 @@
 [pre_brightness]: ./images/brightness.png "Brightness Image"
 [pre_sharing]: ./images/share.png "Sharing Image"
 [pre_shadowing]: ./images/shadow.png "Shadowing Image"
-[pre_all_pipeline]: ./images/all_pipeline.png "Piplined Image"
+[pre_all_pipeline]: ./images/all_pipeline.png "Pipelined Image"
 
 [netw_nvida]: ./images/nvida_network.png "Nvida_network" 
 
 The goals / steps of this project are the following:
 
-* Use the simulator to collect data of good driving behavior 
+* Use the simulator to collect data of good driving behaviour 
 * Design, train and validate a model that predicts a steering angle from image data
 * Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
 
@@ -36,14 +36,14 @@ This lab requires:
 The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
 
 ----
-###  Projectstrucktur
+###  Projectstructure
 
 #### 1. My project includes the following files:
 
 * model.py containing the script to create and train the model
 * network.py containing the script to define the Keras Network
 * generator.py containing the script for the train and validate data generator 
-* utils.py containing the script for the loading data and preprozess images
+* utils.py containing the script for the loading data and preprocess images
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * CarND-Behavioral-Cloning-P3.ipynb notebook to generate documentation images
@@ -60,14 +60,14 @@ python drive.py model.h5
 
 The network.py file contains the code for training and saving the convolution neural network. 
 
-1.  **Before loading the data, the header of the csv File has to be deleted !!** 
-2. Data the set is splited into training and validation data
-3. Model is created. 
+1.  **Before loading the data, the header of the csv File has to be deleted!!** 
+2. The data set is split into training and validation data
+3. The model is created. 
 4. The train and validation generators are created.
 5. AdamOptimizer is created
 6. Compile the model
 7. Run training via fit_generator method.
-8. After the training we have to analyse which Epic produced the model with the lowest loos.  It can be find in the models folder.
+8. After the training we have to analyse which Epic produced the model with the lowest loss.  It can be found in the models folder.
 We can do this via the training console logs
  
 ```sh
@@ -105,15 +105,15 @@ or running the tensor bord
 
 #### 1. An appropriate model architecture has been employed
 
-The model is a variant of the NVIDIA model which is a normalisation layer followed by 5 convolution layers and 3 fully connected layers. My model starts with a cropping layer. This could be done in the preprocessing shape but it seems more readable and probably more efficient (use of GPU in training) to put it in the ANN. There althought is no preprozessing in the drive.py nessesery. In the training preprocessing pipline, I load one of the 3 camera angle at random with a shift ajustedment to account for the left and right camera offset. I also augment the data at random by flip, brighness, dark shadows, shears to desensitise the model to lighting conditions, balance the road topology. 
+The model is a variant of the NVIDIA model which is a normalisation layer followed by 5 convolution layers and 3 fully connected layers. My model starts with a cropping layer. This could be done in the preprocessing shape but it seems more readable and probably more efficient (use of GPU in training) to put it in the ANN. There  is no preprocessing in the drive.py necessary. In the training preprocessing pipline, I load one of the 3 camera images at random with a shift adjustedment to account for the left and right camera offset. I also augment the data at random by flip, brightness, dark shadows, shears to desensitise the model to lighting conditions, balance the road topology. 
 
 
 #### 2. Attempts to reduce overfitting in the model
 
-The data are splited into a training data set and validation data set. The training and validation data are randomly selected from generators. 
-The model contains dropout layers in order to reduce overfitting. The first dropout layers is right after the three Convolution layers (network.py lines 27). The next dropout layers are after the first (network.py lines 31) and second (network.py lines 33) fully connected layer.
+The data is split into a training data set and validation data set. The training and validation data are randomly selected from generators. 
+The model contains dropout layers in order to reduce overfitting. The first dropout layer is right after the three Convolution layers (network.py lines 27). The next dropout layers are after the first (network.py lines 31) and second (network.py lines 33) fully connected layer.
 
-The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track 1 and track 2.
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on track 1 and track 2.
 
 #### 3. Model parameter tuning
 
@@ -121,13 +121,13 @@ For the loss function I used MSE and an ADAM optimiser with a low initial learni
 
 #### 4. Appropriate training data
 
-I used the images preperated for this project. Thanx to my son ( who is a lot better driver than I am) we produced around 4000 aditional data rows. 
+I used the images preperated for this project. Thanks to my son (who is a much better driver than I am) we produced around 4000 additional data rows. 
 
  ![alt text][histogram]
  
-The the training data histogram shows, that the most of the data are are from small steering angles. I decided not to clearing them up to have a real cloning of the behaviour.
+ The training data histogram shows that the most of the data are are from small steering angles. I decided not to clearing them up to have a real cloning of the behaviour.
 
-To run the training on usal machines i desided to implement a validation and training data genererator (generator.py and model.py line 61)  on each data set. The training data generator selects Images from center/left/right cameras randomly. The main purpose of the images form left/right cameras is to learn model how to recover when the vehicle drives off the center the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted form the steering angle for right camera. 
+To run the training on usual machines I decided to implement a validation and training data genererator (generator.py and model.py line 61)  on each data set. The training data generator selects Images from center/left/right cameras randomly. The main purpose of the images form left/right cameras is to learn model how to recover when the vehicle drives off the center the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted form the steering angle for right camera. 
 
 | Camara left                    |      Camara center               |       Camara right                        | 
 |--------------------------------|------------------------------------|------------------------------------------|
