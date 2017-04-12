@@ -125,9 +125,9 @@ I used the images preperated for this project. Thanks to my son (who is a much b
 
  ![alt text][histogram]
  
- The training data histogram shows that the most of the data are are from small steering angles. I decided not to clearing them up to have a real cloning of the behaviour.
+ The training data histogram shows that most of the data is from small steering angles. I decided not to clear them up to have a real cloning of the behaviour.
 
-To run the training on usual machines I decided to implement a validation and training data genererator (generator.py and model.py line 61)  on each data set. The training data generator selects Images from center/left/right cameras randomly. The main purpose of the images form left/right cameras is to learn model how to recover when the vehicle drives off the center the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted form the steering angle for right camera. 
+To run the training on usual machines I decided to implement a validation and training data genererator (generator.py and model.py line 61)  on each data set. The training data generator selects Images from center/left/right cameras randomly. The main purpose of the images form left/right cameras is to teach the model how to recover when the vehicle drives off the center of the lane. Small value 0.3 has been added to the steering angle for left camera and subtracted from the steering angle for right camera. 
 
 | Camara left                    |      Camara center               |       Camara right                        | 
 |--------------------------------|------------------------------------|------------------------------------------|
@@ -139,7 +139,7 @@ Also each image and corresponding steering angle has been flipped and added to t
 |----------------------------|---------------------------|
 | ![alt text][pre_org]   | ![alt text][pre_fliped] |
 
-The Training data generator does some Image preprozessing too, like changing the brightness, image sharing or shadowing
+The Training data generator does some Image preprocessing too, like changing the brightness, image sharing or shadowing.
 
 
 | Brightness                 				 | Sharing                       			  |  Shadowing      			             | 
@@ -147,7 +147,7 @@ The Training data generator does some Image preprozessing too, like changing the
 | ![alt text][pre_brightness]                     | ![alt text][pre_sharing]                  |  ![alt text][pre_shadowing]            | 
 
 
-Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/image/) provided the same work for the same preprozessings.
+Mutch later I found the [ImageDataGenerator](https://keras.io/preprocessing/image/) provided the same work for the same preprocessings.
 
 
 ----- 
@@ -159,9 +159,9 @@ I started with  [NVIDIA model ](https://images.nvidia.com/content/tegra/automoti
 
 ![alt text][netw_nvida]
 
-I continued with 3 convolution layers and 3 fully connected layers and internal Cropping2D (to cut the area of interesst) and a Normalisation layer. 
+I continued with 3 convolution layers and 3 fully connected layers and internal Cropping2D (to cut the area of interest) and a Normalisation layer. 
 
-At the end of the process, the vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road.
+At the end of the process, the vehicle is able to drive autonomously around track 1 and track 2 without leaving the road.
 
 #### 2. Final Model Architecture
 
@@ -171,30 +171,30 @@ The final model architecture (see picture below) consisted of a convolution neur
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, we first recorded two laps on track one using center lane driving and added the data to the prepared training data.
-Than I splited 20% of the training data into a validation set. 
+To capture good driving behaviour, we first recorded two laps on track one using center lane driving and added the data to the prepared training data.
+Then I split 20% of the training data into a validation set. 
 
-I used 20000 randomly taken flipped and preprozessed training data for training the model. 
+I used 20000 randomly taken flipped and preprocessed training data for training the model. 
 
-Example for a preprozessing pipline result
+Example for a preprocessing pipeline result
 
 | Original                     | After pipline                       |
 |----------------------------|---------------------------|
 | ![alt text][pre_org]   | ![alt text][pre_all_pipeline] |
 
-The validation set helped determine if the model was over or under fitting data. The Keras EarlyStoppin Callback (max epoch 20) was used to stop the training when the validation los hit the bottom value and starts rising agin.
-Divering in the internal weigths of the network and the random training data the ideal number of epochs wasbetween  8 and 10. 
+The validation set helped determining if the model was over or under fitting data. The Keras EarlyStoppin Callback (max epoch 20) was used to stop the training when the validation loss hits the bottom value and starts rising again.
+Differing in the internal weigths of the network and the random training data the ideal number of epochs was between  8 and 10. 
 
 ![alt text][tensorboard]
 
 I was using an adam optimizer so that manually training the learning rate wasn't necessary.
 
-After I fond my best model, I started to edit the speed parameter in the drive.py (line 48) and I figured out the the best result in the 2 Track is 13
+After I found my best model, I started to edit the speed parameter in the drive.py (line 48) and I figured out that the best result in the second track is 13.
 
 ----- 
 ### Result 
 
-The result model starts a bit curvy on track one but gets smover after awile. It behaves even better on track 2. 
+The result model starts a bit curvy on track one but gets smoother after a while. It behaves even better on track 2. 
 
 | Track 1                     | Track 2                       |
 |---------------------------|---------------------------|
@@ -204,11 +204,11 @@ The result model starts a bit curvy on track one but gets smover after awile. It
 ----- 
 ### Review
 
-The vehicle is able to drive autonomously around the track 1 and Track 2 without leaving the road. It would be interessting to train the other features 'brake' and 'speed' as well.
+The vehicle is able to drive autonomously around track 1 and track 2 without leaving the road. It would be interessting to train the other features 'brake' and 'speed' as well.
 
-An improvment could be to train the network with more balanced data like clearing up the data to loss the strong weight of small steering angles. 
+An improvement could be to train the network with more balanced data like clearing up the data to lose the strong weight of data sets  small steering angles. 
 
-The good result from track 2 surised me. I did not use any traing data form that track.
+The good result from track 2 surprised me. I did not use any traing data from that track.
 
-karas provides a lot of tools worth to discover :-)
+karas provides a lot of tools worth discovering :-)
 
