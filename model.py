@@ -31,8 +31,8 @@ from generator import *
 ######################################################################################################################
 # Parameter to tune the Training 
 
-EPOCHS = 5
-SAMPLE_PER_EPOCHS = 100
+EPOCHS = 20
+SAMPLE_PER_EPOCHS = 20000
 
 DATA_DIR = 'data'
 LOG_DIR = './logs'
