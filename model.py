@@ -31,8 +31,8 @@ from generator import *
 ######################################################################################################################
 # Parameter to tune the Training 
 
-EPOCHS = 20
-SAMPLE_PER_EPOCHS = 20000
+EPOCHS = 5
+SAMPLE_PER_EPOCHS = 100
 
 DATA_DIR = 'data'
 LOG_DIR = './logs'
@@ -63,13 +63,13 @@ gen_val = generator(data_val)
 
 
 
-if os.path.exists(log_dir):
+if os.path.exists(LOG_DIR):
 	print('\nRemove logs')
-	shutil.rmtree(log_dir)
+	shutil.rmtree(LOG_DIR)
 
-if not os.path.exists(model_dir):
+if not os.path.exists(MODEL_DIR ):
 	print('\nCreate model_dir')
-	os.mkdir(model_dir) 
+	os.mkdir(MODEL_DIR) 
 
 adam = Adam(lr=LEARNING_RATE, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(optimizer=adam, loss='mse')
