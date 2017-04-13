@@ -47,7 +47,7 @@ The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](htt
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * CarND-Behavioral-Cloning-P3.ipynb notebook to generate documentation images
-* RREADME.md summarizing the results
+* README.md summarizing the results
 
 #### 2. Run model on simulator
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
